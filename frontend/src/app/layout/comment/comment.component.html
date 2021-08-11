@@ -1,0 +1,63 @@
+<!-- formulaire de saisie d'un nouveau commentaire -->
+<hr>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Laissez un commentaire</mat-label>
+        <input matInput #input formControlName="comment" maxlength="255" placeholder="Mon commentaire ici...">
+        <mat-hint align="end">{{input.value.length || 0}}/255</mat-hint>
+    </mat-form-field>
+    <div id="form">
+        <button 
+            [disabled]="input.value.length === 0"
+            mat-raised-button 
+            type="submit" 
+            color="primary">
+            Commenter
+        </button>
+    </div>
+</form>
+
+<!-- Liste des commentaires existants -->
+<hr>
+<div *ngFor="let comment of comments">
+    <div class="comment">
+
+        <div class="option">
+            <button 
+                *ngIf="(comment.UserId === profileId) || isAdmin" 
+                mat-icon-button 
+                [matMenuTriggerFor]="option" 
+                aria-label="Options">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #option="matMenu">
+                <button mat-menu-item (click)="onDelete(comment.id)">
+                    <mat-icon color="accent">delete</mat-icon>
+                    <span>effacer</span>
+                </button>
+            </mat-menu>
+        </div>
+
+        <div *ngIf="comment.photo!=='aucune'; else elseBlock" 
+                  mat-card-avatar 
+                  [ngStyle]="{
+                      'background-image': 'url(' + comment.photo + ')',
+                      'background-size': 'cover'
+                  }">
+        </div>
+        <ng-template #elseBlock>
+            <div 
+                mat-card-avatar 
+                [ngStyle]="{
+                    'background-image': 'url(../../assets/images/avatar.png)',
+                    'background-size': 'cover'
+                }">
+            </div>
+        </ng-template>
+        <p>
+            <span class="user">{{comment.firstname}} {{comment.name}}</span>
+            <span class="date">&nbsp;&nbsp;{{comment.createdAt | date:'dd-MM-yy HH:mm'}}</span><br>
+            <span class="text">{{comment.feedback}}</span>
+        </p>
+    </div>
+</div>

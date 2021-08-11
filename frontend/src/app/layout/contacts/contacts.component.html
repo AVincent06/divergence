@@ -1,0 +1,33 @@
+<h2>Vos contacts</h2>
+<div *ngFor="let profile of profiles; let i = index" (click)="onViewProfile(i)">
+    <mat-card class="card">
+        <mat-card-header>
+            <div *ngIf="profile.photo!=='aucune' && profile.photo!==null; else elseBlock"
+                mat-card-avatar 
+                [ngStyle]="{
+                    'background-image': 'url('+ profile.photo +')',
+                    'background-size': 'cover',
+                    'height': '100px',
+                    'width': '100px'
+                }">
+            </div>
+            <ng-template #elseBlock>
+                <div 
+                    mat-card-avatar 
+                    [ngStyle]="{
+                        'background-image': 'url(../../assets/images/avatar.png)',
+                        'background-size': 'cover',
+                        'height': '100px',
+                        'width': '100px'
+                    }">
+                </div>
+            </ng-template>
+            <mat-card-title>{{ profile.firstname }} {{ profile.name }}</mat-card-title>
+            <mat-card-subtitle>{{ profile.bio ? profile.bio : 'Pas de description' }}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+</div>
+
+<div class="footer">
+    <app-footer></app-footer>
+</div>

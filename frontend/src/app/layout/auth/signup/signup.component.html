@@ -1,0 +1,82 @@
+<mat-card class="sign-card">
+    <mat-card-header>
+        <mat-card-title>Créer un compte</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <mat-label>Prénom</mat-label>
+                    <input type="text" matInput formControlName="firstname">
+                    <mat-error *ngIf="signUpForm.get('firstname')!.hasError('required')">
+                        Le prénom est requis!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input type="text" matInput formControlName="name">
+                    <mat-error *ngIf="signUpForm.get('name')!.hasError('required')">
+                        Le nom est requis!
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. mon-adresse@exemple.fr">
+                    <mat-error *ngIf="signUpForm.get('email')!.hasError('email') && !signUpForm.get('email')!.hasError('required')">
+                        Veuillez saisir une adresse email valide!
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.get('email')!.hasError('required')">
+                        l'email est requis!
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field hintLabel="Minimum 12 caractères, 1 minuscule, 1 majuscule et 1 chiffre">
+                    <mat-label>Mot de passe</mat-label>
+                    <input #password matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button 
+                        type="button"
+                        mat-icon-button 
+                        matSuffix 
+                        (click)="hide = !hide" 
+                        [attr.aria-label]="'Hide password'" 
+                        [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field hintLabel="Ressaisissez le même mot de passe">
+                    <mat-label>Vérification du mot de passe</mat-label>
+                    <input #passwordcheck matInput [type]="hide2 ? 'password' : 'text'" formControlName="passwordcheck">
+                    <button 
+                        type="button"
+                        mat-icon-button 
+                        matSuffix 
+                        (click)="hide2 = !hide2" 
+                        [attr.aria-label]="'Hide password check'" 
+                        [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <p>
+                <button 
+                    mat-raised-button 
+                    type="submit" 
+                    [disabled]="signUpForm.invalid || (password.value != passwordcheck.value)"
+                    color="primary">
+                    Créer mon compte
+                </button>
+            </p>
+        </form>
+        <p color="warn">{{ errorMessage }}</p>    
+    </mat-card-content>
+</mat-card>
+
+<div class="footer">
+    <app-footer></app-footer>
+</div>

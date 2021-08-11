@@ -1,0 +1,97 @@
+<h2>Dernières actualités</h2>
+<div *ngFor="let message of messages; let i = index" (click)="onViewMessage(i)">
+  <mat-card class="card">
+
+    <!-- Option édition et d'effacement du message, sous condition -->
+    <div class="option">
+      <button 
+        *ngIf="(message.UserId === profileId) || isAdmin"
+        mat-icon-button 
+        [matMenuTriggerFor]="option" 
+        aria-label="Options">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #option="matMenu">
+        <button mat-menu-item (click)="onDelete(message.id)">
+          <mat-icon color="accent">delete</mat-icon>
+          <span>effacer</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <mat-card-header>
+      <div *ngIf="message.photo!=='aucune'; else elseBlock" 
+          mat-card-avatar 
+          [ngStyle]="{
+              'background-image': 'url(' + message.photo + ')',
+              'background-size': 'cover'
+          }">
+      </div>
+      <ng-template #elseBlock>
+        <div 
+            mat-card-avatar 
+            [ngStyle]="{
+                'background-image': 'url(../../assets/images/avatar.png)',
+                'background-size': 'cover'
+            }">
+        </div>
+      </ng-template>
+
+      <mat-card-title>{{ message.firstname }} {{ message.name }}</mat-card-title>
+      <mat-card-subtitle>{{ message.createdAt | date: 'short'}}</mat-card-subtitle>
+
+    </mat-card-header>
+
+    <img *ngIf="message.picture !== 'aucune'" mat-card-image [src]="message.picture"/>
+
+    <mat-card-content>
+      <p>
+        {{message.article}}
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <div class="spacer">
+        <button 
+          mat-icon-button 
+          type="button" 
+          (click)="onShow(i)">
+          {{ message.nbComments }}
+          <mat-icon color="primary">
+            chat_bubble_outline
+          </mat-icon>
+        </button>
+        <span>
+
+          <!--Bouton Like-->
+          <button mat-icon-button type="button" (click)="onLike(i)" [disabled]="isOneOfThem(message.usersDisliked) === true">
+            <span id="likes-{{i}}">{{ message.likes }}</span>
+            <mat-icon id="up-{{i}}"  color="primary">
+              {{isOneOfThem(message.usersLiked) ? 'thumb_up_alt' : 'thumb_up_off_alt'}}
+            </mat-icon>
+          </button>
+
+          <!--Bouton Dislike-->
+          <button mat-icon-button type="button" (click)="onDislike(i)" [disabled]="isOneOfThem(message.usersLiked) === true">
+            <mat-icon id="down-{{i}}"  color="primary">
+              {{isOneOfThem(message.usersDisliked) ? 'thumb_down_alt' : 'thumb_down_off_alt'}}
+            </mat-icon>
+            <span id="dislikes-{{i}}">{{ message.dislikes }}</span>
+          </button>
+
+        </span>
+      </div>
+    
+      <app-comment 
+        id="comments-{{i}}"
+        [index]="i"
+        [messageId]="message.id"
+        (incNbComments)="incMessageComments($event)"
+        (decNbComments)="decMessageComments($event)">
+      </app-comment>
+
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<app-footer></app-footer>

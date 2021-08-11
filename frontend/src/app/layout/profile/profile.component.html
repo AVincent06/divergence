@@ -1,0 +1,117 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Mon profil</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <form *ngIf="profile != null" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="aside">
+                <div *ngIf="selectedFile!=='aucune' && selectedFile!==null; else elseBlock"
+                    mat-card-avatar 
+                    [ngStyle]="{
+                        'background-image': 'url('+ selectedFile +')',
+                        'background-size': 'cover',
+                        'height': '100px',
+                        'width': '100px'
+                    }">
+                </div>
+                <ng-template #elseBlock>
+                    <div 
+                        mat-card-avatar 
+                        [ngStyle]="{
+                            'background-image': 'url(../../assets/images/avatar.png)',
+                            'background-size': 'cover',
+                            'height': '100px',
+                            'width': '100px'
+                        }">
+                    </div>
+                </ng-template>
+                <div>
+                    <input type="file" accept="image/*" #photoFile formControlName="photo" (change)="onChange($event)">
+                    <button mat-stroked-button type="button" color="primary" (click)="photoFile.click()">Modifier ma photo</button>
+                </div>
+            </div>
+            <p>
+                <mat-form-field>
+                    <mat-label>Prénom</mat-label>
+                    <input type="text" matInput formControlName="firstname">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input type="text" matInput formControlName="name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Ancien mot de passe</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="oldpassword">
+                    <button 
+                        type="button"
+                        mat-icon-button 
+                        matSuffix 
+                        (click)="hide = !hide" 
+                        [attr.aria-label]="'Hide password'" 
+                        [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field hintLabel="Minimum 12 caractères dont 1 majuscule et 1 chiffre">
+                    <mat-label>Nouveau mot de passe</mat-label>
+                    <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="newpassword">
+                    <button 
+                        type="button"
+                        mat-icon-button 
+                        matSuffix 
+                        (click)="hide2 = !hide2" 
+                        [attr.aria-label]="'Hide password check'" 
+                        [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Bio</mat-label>
+                    <input type="text" matInput formControlName="bio">
+                </mat-form-field>
+            </p>
+            <div class="bottom">
+                <button
+                    type="button"
+                    color="accent"
+                    mat-mini-fab
+                    (click)="onDelete()">
+                    <mat-icon aria-label="Delete profile forever">dangerous</mat-icon>
+                </button>
+                <div class="submit">
+                    <button 
+                        mat-stroked-button 
+                        type="button"
+                        (click)="initForm()"
+                        color="primary">
+                        Réinitialisez
+                    </button>
+                    <button 
+                        mat-raised-button 
+                        type="submit" 
+                        [disabled]="profileForm.invalid"
+                        color="primary">
+                        Mettre à jour
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<div class="footer">
+    <app-footer></app-footer>
+</div>
