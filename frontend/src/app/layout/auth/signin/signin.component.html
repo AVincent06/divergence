@@ -1,0 +1,59 @@
+<mat-card class="sign-card">
+
+    <mat-card-header>
+        <mat-card-title><h2>Connexion</h2></mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. mon-adresse@exemple.fr">
+                    <mat-error *ngIf="signInForm.get('email')!.hasError('email') && !signInForm.get('email')!.hasError('required')">
+                    Veuillez saisir une adresse email valide!
+                    </mat-error>
+                    <mat-error *ngIf="signInForm.get('email')!.hasError('required')">
+                    l'email est requis!
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button 
+                        type="button"
+                        mat-icon-button 
+                        matSuffix 
+                        (click)="hide = !hide" 
+                        [attr.aria-label]="'Hide password'" 
+                        [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>
+            <p>
+                <button 
+                    mat-raised-button 
+                    type="submit" 
+                    [disabled]="signInForm.invalid"
+                    color="primary">
+                    Se connecter
+                </button>
+            </p>
+        </form>
+        <p color="warn">{{ errorMessage }}</p>    
+        <p>
+            <span class="spacer">
+                <a routerLink="../forgot">Mot de passe oublié?</a>
+                <a routerLink="../signup">S'inscrire</a>
+            </span>
+        </p> 
+    </mat-card-content>
+
+</mat-card>
+
+<div class="footer">
+    <app-footer></app-footer>
+</div>

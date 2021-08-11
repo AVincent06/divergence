@@ -1,0 +1,25 @@
+app-comment {
+    display: none;
+}
+
+.card {
+    margin: auto;
+    margin-top: 10px;
+    max-width: 800px;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+}
+
+.option {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.spacer {
+    display: flex;
+    justify-content: space-between;
+}

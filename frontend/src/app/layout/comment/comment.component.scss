@@ -1,0 +1,31 @@
+.comment {
+    display: flex;
+    position: relative;
+}
+
+.date {
+    font-weight: lighter;
+}
+
+#form {
+    display: flex;
+    justify-content: flex-end
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.option {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.text {
+    font-style: italic;
+}
+
+.user {
+    font-weight: bold;
+}

@@ -1,0 +1,55 @@
+<h2>Publier mon message</h2>
+
+<form [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+    <mat-card class="card" role="form">
+
+        <mat-card-header>
+            <mat-card-title>
+                Texte et/ou Image
+            </mat-card-title>
+            <mat-card-subtitle>
+                formats acceptés : .gif .jpg .jpeg .png .webp
+            </mat-card-subtitle>
+        </mat-card-header>
+        
+        <div class="image">
+            <img mat-card-image *ngIf="selectedFile" src="{{selectedFile}}" alt="Image choisi pour le message">
+            <input type="file" accept="image/*" #photoFile formControlName="picture" (change)="onChange($event)">
+            <button 
+                id="imgButton"
+                mat-stroked-button 
+                type="button" 
+                color="primary" 
+                (click)="photoFile.click()">
+                Choisir son image
+            </button>
+        </div>
+
+        <mat-card-content>
+            <p>
+                <mat-form-field id="message">
+                    <mat-label>Publier mon message</mat-label>
+                    <textarea
+                        matInput 
+                        formControlName="editor" 
+                        placeholder="Taper votre message ici...">
+                    </textarea>
+                </mat-form-field>
+            </p>        
+        </mat-card-content>
+
+        <mat-card-actions>
+            <p>
+                <button 
+                    mat-raised-button 
+                    type="submit" 
+                    color="primary">
+                    Publier
+                </button>
+            </p>
+        </mat-card-actions>
+
+    </mat-card>
+</form>
+
+<app-footer></app-footer>

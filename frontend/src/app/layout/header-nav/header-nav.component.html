@@ -1,0 +1,97 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="false"
+      position="end">
+    <mat-toolbar><mat-icon>menu</mat-icon>&nbsp;Menu</mat-toolbar>
+
+    <!-- Menu SignIn -->
+    <mat-nav-list *ngIf="isLoggedIn" (click)="drawer.close()">
+      <a mat-list-item routerLink="news"><mat-icon color="primary">home</mat-icon>Accueil</a>
+      <a mat-list-item routerLink="profile"><mat-icon color="primary">face</mat-icon>Profil</a>
+      <a mat-list-item routerLink="contacts"><mat-icon color="primary">people</mat-icon>Contacts</a>
+      <a mat-list-item routerLink="submit"><mat-icon color="primary">post_add</mat-icon>Publier</a>
+      <!-- <a mat-list-item routerLink="notif"><mat-icon color="primary">notifications</mat-icon>Notifications</a> -->
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="" (click)="signout()"><mat-icon color="primary">logout</mat-icon>Quitter</a>
+    </mat-nav-list>
+
+    <!-- Menu SignOut -->
+    <mat-nav-list *ngIf="!isLoggedIn" (click)="drawer.close()">
+      <a mat-list-item routerLink="signin"><mat-icon color="primary">login</mat-icon>Se connecter</a>
+      <a mat-list-item routerLink="signup"><mat-icon color="primary">history_edu</mat-icon>S'inscrire</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="sticky-top"><!--sur les boutons : routerLinkActive="mat-primary"-->
+      <a routerLink="news" class="brand"><img id="logo" src="../../../assets/images/logo.png" alt="logo de Groupomania"></a>
+      <span class="spacer"></span>
+
+      <!-- Menu SignIn -->
+      <span *ngIf="!(isHandset$ | async) &&  isLoggedIn">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]=""
+          (click)="signout()">
+          <mat-icon>logout</mat-icon>&nbsp;Quitter
+        </button>
+        <!-- <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/notif']">
+          <mat-icon>notifications</mat-icon>&nbsp;Notifications
+        </button> -->
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/submit']">
+          <mat-icon>post_add</mat-icon>&nbsp;Publier
+        </button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/contacts']">
+          <mat-icon>people</mat-icon>&nbsp;Contacts
+        </button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/profile']">
+          <mat-icon>face</mat-icon>&nbsp;Profil
+        </button>
+      </span>
+      
+      <!-- Menu SignOut -->
+      <span *ngIf="!(isHandset$ | async) &&  !isLoggedIn">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/signup']">
+          <mat-icon>history_edu</mat-icon>&nbsp;S'inscrire
+        </button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/signin']">
+          <mat-icon>login</mat-icon>&nbsp;Se connecter
+        </button>
+      </span>
+      
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        color="primary"
+        mat-mini-fab
+        (click)="drawer.toggle()" 
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
