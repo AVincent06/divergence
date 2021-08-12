@@ -1,3 +1,9 @@
+/**
+* @file Management of news display, as well as likes/dislikes and comment display.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';

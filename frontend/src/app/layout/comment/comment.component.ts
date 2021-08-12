@@ -1,3 +1,9 @@
+/**
+* @file Child component of "News" that manages comments
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
