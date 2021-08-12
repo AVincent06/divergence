@@ -1,3 +1,9 @@
+/**
+* @file Managing the login form
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';

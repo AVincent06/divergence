@@ -1,3 +1,9 @@
+/**
+* @file Services grouping together all the functions relating to the management of messages.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

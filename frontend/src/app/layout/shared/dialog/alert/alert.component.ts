@@ -1,3 +1,14 @@
+/**
+* @file Basic structure for "Alert" dialog boxes
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @license GNU_General_Public_License_v3.0
+*/
+/**
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

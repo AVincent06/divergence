@@ -1,3 +1,9 @@
+/**
+* @file Management of canActivate to protect access to the application's routes.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
