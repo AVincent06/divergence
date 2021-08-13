@@ -1,3 +1,9 @@
+/**
+* @file Configuration file of the multer middleware responsible for extracting images from the req.body.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 const multer = require('multer');
 
 const MIME_TYPES = {
