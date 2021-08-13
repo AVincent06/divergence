@@ -1,3 +1,9 @@
+/**
+* @file Set of controllers containing the business logic of the feeling routes.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
@@ -7,7 +13,11 @@ const Op = db.Sequelize.Op;
 const LIKE = 1;
 const DISLIKE = 2;
 
-// ajouter un like sur le message actuel
+/** 
+* Add a like on the current message
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.addLike = async (req, res) => {
     const id = req.body.messageId;
 
@@ -49,7 +59,11 @@ exports.addLike = async (req, res) => {
         });
 };
 
-// ajouter un dislike sur le message actuel
+/** 
+* Add a dislike on the current message
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.addDislike = async (req, res) => {
     const id = req.body.messageId;
 
@@ -91,7 +105,11 @@ exports.addDislike = async (req, res) => {
         });
 };
 
-// récupérer tous les like pour le message par id
+/** 
+* Get all likes for the message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllLike = async (req, res) => {
     const id = req.params.id;
 
@@ -116,7 +134,11 @@ exports.findAllLike = async (req, res) => {
         });
 };
 
-// récupérer tous les dislike pour le message par id
+/** 
+* Get all dislikes for the message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllDislike = async (req, res) => {
     const id = req.params.id;
 
@@ -141,7 +163,11 @@ exports.findAllDislike = async (req, res) => {
         });
 };
 
-// effacer un like sur le message par id
+/** 
+* Delete a like on the message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.delLike = async (req, res) => {
     const id = req.params.id;
 
@@ -176,7 +202,11 @@ exports.delLike = async (req, res) => {
         });
 };
 
-// effacer un dislike sur le message par id
+/** 
+* Delete a dislike on the message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.delDislike = async (req, res) => {
     const id = req.params.id;
 

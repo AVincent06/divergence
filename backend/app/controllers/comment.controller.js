@@ -1,3 +1,9 @@
+/**
+* @file Set of controllers containing the business logic of the comment routes.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
@@ -6,7 +12,11 @@ const Comment = db.comments;
 const User = db.users;
 const Op = db.Sequelize.Op;
 
-// créer un nouveau commentaire
+/** 
+* Creating a new comment
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.create = async (req, res) => {
     // Validation de la requète
     if(!req.body.feedback) {
@@ -41,7 +51,11 @@ exports.create = async (req, res) => {
         });
 };
 
-// récupérer tous les commentaires du message par messageId
+/** 
+* Retrieve all message comments by messageId
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllByMessage = async (req, res) => {
     const messageId = req.params.messageId;
     let receptacles = [];
@@ -89,7 +103,11 @@ exports.findAllByMessage = async (req, res) => {
         });
 };
 
-// récupérer un commentaire par id
+/** 
+* Retrieve a comment by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findOne = async (req, res) => {
     const id = req.params.id;
 
@@ -104,7 +122,11 @@ exports.findOne = async (req, res) => {
         });
 };
 
-// mettre à jour un commentaire par id
+/** 
+* Update a comment by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.update = async (req, res) => {
     const id = req.params.id;
 
@@ -129,7 +151,11 @@ exports.update = async (req, res) => {
         });
 };
 
-// effacer un commentaire par id
+/** 
+* Delete a comment by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.delete = async (req, res) => {
     const id = req.params.id;
 

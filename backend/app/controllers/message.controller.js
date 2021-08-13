@@ -1,3 +1,9 @@
+/**
+* @file Set of controllers containing the business logic of the message routes.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 const db = require("../models");
 const Message = db.messages;
 const User = db.users;
@@ -9,7 +15,11 @@ const Op = db.Sequelize.Op;
 const Sequelize = require("sequelize");
 const fs = require('fs');
 
-// créer un nouveau message
+/** 
+* Create a new message
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.create = async (req, res) => {
 
     // Création d'un message
@@ -31,7 +41,11 @@ exports.create = async (req, res) => {
         });
 };
 
-// récupérer les nb dernières news
+/** 
+* Get the last nb of news
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findNewsByAmount = async (req, res) => {
     const nb = parseInt(req.params.nb, 10);
     let receptacles = [];
@@ -150,8 +164,11 @@ exports.findNewsByAmount = async (req, res) => {
         });
 };
 
-
-// récupérer les nb derniers messages
+/** 
+* Retrieve the last nb of messages
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllByAmount = async (req, res) => {
     const nb = parseInt(req.params.nb, 10);
 
@@ -169,7 +186,11 @@ exports.findAllByAmount = async (req, res) => {
         });
 };
 
-// récupérer les messages jusqu'à date
+/** 
+* Retrieve messages up to date
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllByDate = async (req, res) => {
     const date = req.params.date;
 
@@ -190,7 +211,11 @@ exports.findAllByDate = async (req, res) => {
         });
 };
 
-// récupérer tous les message par userId
+/** 
+* Retrieve all messages by userId
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAllByUser = async (req, res) => {
     const userId = req.params.userId;
 
@@ -211,7 +236,11 @@ exports.findAllByUser = async (req, res) => {
         });
 };
 
-// récupérer un message par id
+/** 
+* Retrieve a message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findOne = async (req, res) => {
     const id = req.params.id;
 
@@ -226,7 +255,11 @@ exports.findOne = async (req, res) => {
         });
 };
 
-// mettre à jour un message par id
+/** 
+* Update a message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.update = async (req, res) => {
     const id = req.params.id;
     const message = {
@@ -264,7 +297,11 @@ exports.update = async (req, res) => {
         });
 };
 
-// effacer un message par id
+/** 
+* Delete a message by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.delete = async (req, res) => {
     const id = req.params.id;
     let fileToDelete;

@@ -1,3 +1,9 @@
+/**
+* @file Set of controllers containing the business logic of the user routes.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
 require('dotenv').config();
 
 const passwordValidator = require('password-validator');//A2:2017 OWASP
@@ -10,7 +16,11 @@ const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
 
-// créer un nouvel utilisateur
+/** 
+* Create a new user
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.create = (req, res) => {
     // Création d'un schéma pour le mot de passe
     const schema = new passwordValidator();
@@ -58,7 +68,11 @@ exports.create = (req, res) => {
     }
 }; 
 
-// identifier un utilisateur existant
+/** 
+* Identify an existing user
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.identify = async (req, res) => {
     await User.findOne({
         where: {email : req.body.email}
@@ -82,7 +96,11 @@ exports.identify = async (req, res) => {
         .catch((error) => res.status(401).json({ error : 'utilisateur non trouvé !'}));   
 };
 
-// récupérer tous les utilisateurs
+/** 
+* Retrieve all users
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findAll = async (req, res) => {
     await User.findAll({
         attributes: ['id', 'photo', 'name', 'firstname', 'bio'],
@@ -101,7 +119,11 @@ exports.findAll = async (req, res) => {
         }); 
 };
 
-// récupérer un utilisateur par id
+/** 
+* Retrieve a user by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.findOne = async (req, res) => {
     const id = req.params.id;
 
@@ -116,7 +138,11 @@ exports.findOne = async (req, res) => {
         });
 };
 
-// mettre à jour un utilisateur par id
+/** 
+* Update a user by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.update = async (req, res) => { 
     const id = req.params.id;
     const user = {
@@ -159,7 +185,11 @@ exports.update = async (req, res) => {
         });
 };
 
-// effacer un utilisateur par id
+/** 
+* Delete a user by id
+* @param {any} req - Request
+* @param {any} res - Response
+*/
 exports.delete = async (req, res) => {
     const id = req.params.id;
     let fileToDelete;
