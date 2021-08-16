@@ -6,7 +6,7 @@
       position="end">
     <mat-toolbar><mat-icon>menu</mat-icon>&nbsp;Menu</mat-toolbar>
 
-    <!-- Menu SignIn -->
+    <!-- SignIn Menu -->
     <mat-nav-list *ngIf="isLoggedIn" (click)="drawer.close()">
       <a mat-list-item routerLink="news"><mat-icon color="primary">home</mat-icon>Accueil</a>
       <a mat-list-item routerLink="profile"><mat-icon color="primary">face</mat-icon>Profil</a>
@@ -17,7 +17,7 @@
       <a mat-list-item routerLink="" (click)="signout()"><mat-icon color="primary">logout</mat-icon>Quitter</a>
     </mat-nav-list>
 
-    <!-- Menu SignOut -->
+    <!-- SignOut Menu -->
     <mat-nav-list *ngIf="!isLoggedIn" (click)="drawer.close()">
       <a mat-list-item routerLink="signin"><mat-icon color="primary">login</mat-icon>Se connecter</a>
       <a mat-list-item routerLink="signup"><mat-icon color="primary">history_edu</mat-icon>S'inscrire</a>
@@ -25,11 +25,11 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar class="sticky-top"><!--sur les boutons : routerLinkActive="mat-primary"-->
+    <mat-toolbar class="sticky-top">
       <a routerLink="news" class="brand"><img id="logo" src="../../../assets/images/logo.png" alt="logo de Groupomania"></a>
       <span class="spacer"></span>
 
-      <!-- Menu SignIn -->
+      <!-- SignIn Menu -->
       <span *ngIf="!(isHandset$ | async) &&  isLoggedIn">
         <button 
           mat-raised-button 
@@ -64,7 +64,7 @@
         </button>
       </span>
       
-      <!-- Menu SignOut -->
+      <!-- SignOut Menu -->
       <span *ngIf="!(isHandset$ | async) &&  !isLoggedIn">
         <button 
           mat-raised-button 

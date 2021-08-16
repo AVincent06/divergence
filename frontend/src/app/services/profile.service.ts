@@ -78,7 +78,7 @@ export class ProfileService {
   */
   setSingleProfile(id: number, profile: Profile_public2): Observable<any> {
 
-    // Adoption d'un FormData pour résoudre un problème d'upload de fichier
+    // Adoption of a FormData to solve a file upload problem
     let formData = new FormData();
     formData.append('firstname', profile.firstname as string);
     formData.append('name', profile.name as string);

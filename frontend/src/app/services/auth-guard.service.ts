@@ -26,7 +26,7 @@ export class AuthGuardService implements CanActivate {
   */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     
-    // Controle de l'acces
+    // Access control
     if(!this.authService.isConnected()) {
       console.log('accès non autorisé !')
       this.authService.signOutUser();

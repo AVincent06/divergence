@@ -39,7 +39,7 @@ export class ContactsComponent implements OnInit {
   * @param {number} id - Identifies the position of the contact in the display loop.
   */
   onViewProfile(id: number): void {
-    // this.router.navigate(['/profile', 'view', id]) créer le component de vue unique ou rediriger vers profile?
+    // this.router.navigate(['/profile', 'view', id])
   }
 
 }

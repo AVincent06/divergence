@@ -62,7 +62,7 @@ export class MessageService {
   */
   postMessage(message: Message_post): Observable<any> {
 
-    // Adoption d'un FormData pour résoudre un problème d'upload de fichier
+    // Adoption of a FormData to solve a file upload problem
     let formData = new FormData();
     formData.append('file', message.file as File);
     formData.append('article', message.article as string);

@@ -24,7 +24,7 @@ import { ConfirmationComponent } from '../shared/dialog/confirmation/confirmatio
 export class ProfileComponent implements OnInit {
 
   profileForm = new FormGroup({
-    photo : new FormControl(''),  // RAJOUTER LE 24 07 2021
+    photo : new FormControl(''),
     firstname : new FormControl(''),
     name : new FormControl(''),
     email : new FormControl(''),
@@ -66,8 +66,8 @@ export class ProfileComponent implements OnInit {
       firstname: [this.profile.firstname],  //[Validators.required, Validators.pattern('^[a-zA-Z]+$')]
       name: [this.profile.name],  //[Validators.required, Validators.pattern('^[a-zA-Z]+$')]
       email: [this.profile.email, [Validators.required, Validators.email]],
-      oldpassword: [{value: '', disabled: true}], // fonctionnalité en attente
-      newpassword: [{value: '', disabled: true}], // fonctionnalité en attente
+      oldpassword: [{value: '', disabled: true}], // Pending features
+      newpassword: [{value: '', disabled: true}], // Pending features
       bio: [this.profile.bio]
     });
     this.selectedFile = this.profile.photo;
@@ -107,7 +107,7 @@ export class ProfileComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        // Effacer le profil après confirmation
+        // Delete profile after confirmation
         this.profileService.delSingleProfile(this.authService.getProfileId()).subscribe(() => {
         console.log("Le profil a été supprimé!");
         this.authService.signOutUser();
