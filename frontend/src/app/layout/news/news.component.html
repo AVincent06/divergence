@@ -2,7 +2,7 @@
 <div *ngFor="let message of messages; let i = index" (click)="onViewMessage(i)">
   <mat-card class="card">
 
-    <!-- Option édition et d'effacement du message, sous condition -->
+    <!-- Option to edit and delete the message, conditionally -->
     <div class="option">
       <button 
         *ngIf="(message.UserId === profileId) || isAdmin"
@@ -63,7 +63,7 @@
         </button>
         <span>
 
-          <!--Bouton Like-->
+          <!-- Like Button -->
           <button mat-icon-button type="button" (click)="onLike(i)" [disabled]="isOneOfThem(message.usersDisliked) === true">
             <span id="likes-{{i}}">{{ message.likes }}</span>
             <mat-icon id="up-{{i}}"  color="primary">
@@ -71,7 +71,7 @@
             </mat-icon>
           </button>
 
-          <!--Bouton Dislike-->
+          <!-- Dislike Button -->
           <button mat-icon-button type="button" (click)="onDislike(i)" [disabled]="isOneOfThem(message.usersLiked) === true">
             <mat-icon id="down-{{i}}"  color="primary">
               {{isOneOfThem(message.usersDisliked) ? 'thumb_down_alt' : 'thumb_down_off_alt'}}

@@ -1,4 +1,4 @@
-<!-- formulaire de saisie d'un nouveau commentaire -->
+<!-- form for entering a new comment -->
 <hr>
 <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
@@ -17,7 +17,7 @@
     </div>
 </form>
 
-<!-- Liste des commentaires existants -->
+<!-- List of existing comments -->
 <hr>
 <div *ngFor="let comment of comments">
     <div class="comment">

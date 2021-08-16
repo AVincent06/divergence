@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  isLog$: Subject<boolean> = new Subject<boolean>();  // code pour l'observable de la session
+  isLog$: Subject<boolean> = new Subject<boolean>();  // code for the observable of the session
 
   constructor( private http: HttpClient ) {
     this.isLog$.next(false);
@@ -68,7 +68,7 @@ export class AuthService {
   * Allows to manage the menu between signIn and signOut mode.
   * @return {Observable<boolean>} Indicates the status of the connection.
   */
-  isUserLoggedIn(): Observable<boolean> { // pour le menu réactif
+  isUserLoggedIn(): Observable<boolean> { // for the reactive menu
     return this.isLog$;                   
   }
 
