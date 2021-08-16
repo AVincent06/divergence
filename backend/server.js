@@ -1,3 +1,10 @@
+/**
+* @file Central file of the application, "node server.js" to launch the server.
+* @author Vincent Augugliaro <vincent.augugliaro@orange.fr>
+* @copyright Vincent Augugliaro 2021
+* @license GNU_General_Public_License_v3.0
+*/
+
 require('dotenv').config();
 
 const bcrypt = require('bcrypt');
