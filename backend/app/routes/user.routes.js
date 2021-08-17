@@ -11,22 +11,22 @@ module.exports = app => {
     const auth = require("../middleware/auth");
     const multer = require("../middleware/multer-config");
 
-    // créer un nouvel utilisateur
+    // Create a new user
     router.post("/", users.create);
 
-    // identifier un utilisateur existant
+    // Identify an existing user
     router.post("/identify", users.identify);
 
-    // récupérer tous les utilisateurs
+    // Retrieve all users
     router.get("/", auth, users.findAll);
 
-    // récupérer un utilisateur par id
+    // Retrieve a user by id
     router.get("/:id", auth, users.findOne);
 
-    // mettre à jour un utilisateur par id
+    // Update a user by id
     router.put("/:id", auth, multer, users.update);
 
-    // effacer un utilisateur par id
+    // Delete a user by id
     router.delete("/:id", auth, users.delete);
 
     app.use("/api/users", router); 

@@ -18,7 +18,7 @@ const Op = db.Sequelize.Op;
 * @param {any} res - Response
 */
 exports.create = async (req, res) => {
-    // Validation de la requète
+    // Validation of the request
     if(!req.body.feedback) {
         res.status(400).send({ 
             message: "Votre commentaire est vide" 
@@ -30,14 +30,14 @@ exports.create = async (req, res) => {
     const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
     const userId = decodedToken.userId;
 
-    // Création d'un commentaire
+    // Creating a comment
     const comment = {
         feedback: req.body.feedback,
         MessageId: req.body.messageId,
         UserId: userId
     }
 
-    // Sauvegarde du commentaire dans la BDD
+    // Saving the comment in the DB
     await Comment.create(comment)
         .then(() => {
             res.status(201).send({
@@ -60,14 +60,14 @@ exports.findAllByMessage = async (req, res) => {
     const messageId = req.params.messageId;
     let receptacles = [];
 
-    // étape 1 : récupération de la partie "Comments" des commentaires
+    // step 1: retrieve the "Comments" part of the comments
     await Comment.findAll({
         where: {
             MessageId: {
                 [Op.eq]: messageId
             },
             UserId: {
-                [Op.not]: null  // Pour éviter les commentaires dont l'auteur a supprimé son compte
+                [Op.not]: null  // To avoid comments whose author has deleted his account
             }
         }
     })
@@ -76,7 +76,7 @@ exports.findAllByMessage = async (req, res) => {
                 return element.dataValues;
             });
 
-            // étape 2 : récupération de la partie "Users" des commentaires
+            // step 2: retrieve the "Users" part of the comments
             for (let i = 0; i < receptacles.length; i++) {
                 await User.findByPk(receptacles[i].UserId)
                     .then(partTwo => {

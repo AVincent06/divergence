@@ -22,7 +22,7 @@ const Op = db.Sequelize.Op;
 * @param {any} res - Response
 */
 exports.create = (req, res) => {
-    // Création d'un schéma pour le mot de passe
+    // Creating a password scheme
     const schema = new passwordValidator();
     schema
         .is().min(12)
@@ -42,7 +42,7 @@ exports.create = (req, res) => {
     if(emailValidated && passwordValidated) { 
         bcrypt.hash(req.body.password, 10)
             .then(async (hash) => {
-                // Création d'un utilisateur
+                // Creating a user
                 const user = {
                     firstname: req.body.firstname,
                     name: req.body.name,
@@ -51,7 +51,7 @@ exports.create = (req, res) => {
                     is_admin: req.body.is_admin ? req.body.is_admin : false,
                     photo: 'aucune'
                 }
-                // Sauvegarde de l'utilisateur dans la BDD
+                // Saving the user in the DB
                 await User.create(user)
                     .then(data => {
                         res.status(201).send(data);
@@ -156,7 +156,7 @@ exports.update = async (req, res) => {
     }
     
     let info = '';
-    if( req.file && (req.body.photo !== 'aucune') ) {   // on gère l'effacement du fichier précedent avant de perdre sa trace
+    if( req.file && (req.body.photo !== 'aucune') ) {   // we manage the deletion of the previous file before losing its trace
         const filename = req.body.photo.split('/images/')[1];
         fs.unlink(`app/images/${filename}`, (error) => {
             if (error) res.status(400).json({ error });
@@ -194,7 +194,7 @@ exports.delete = async (req, res) => {
     const id = req.params.id;
     let fileToDelete;
 
-    // Processus de recherche de l'image de profil pour la suppression ultérieur
+    // Process of searching the profile image for subsequent deletion
     await User.findByPk(id)
         .then(data => {
             fileToDelete = data.photo; 
@@ -210,7 +210,7 @@ exports.delete = async (req, res) => {
     })
         .then( isDeleted => {
             if(isDeleted) {
-                // Suppression de la photo de cet utilisateur
+                // Deleting this user's photo
                 let info = '';
                 if( fileToDelete !== 'aucune' && fileToDelete !== null) {
                     const filename = fileToDelete.split('/images/')[1];

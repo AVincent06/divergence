@@ -10,22 +10,22 @@ module.exports = app => {
     const router = require("express").Router();
     const auth = require("../middleware/auth");
 
-    // ajouter un like sur le message actuel
+    // Add a like on the current message
     router.post("/like", auth, feelings.addLike);
 
-    // ajouter un dislike sur le message actuel
+    // Add a dislike to the current post
     router.post("/dislike", auth, feelings.addDislike);
 
-    // récupérer tous les like pour le message par id
+    // Get all likes for the message by id
     router.get("/like/:id", auth, feelings.findAllLike);
 
-    // récupérer tous les dislike pour le message par id
+    // Get all dislikes for the post by id
     router.get("/dislike/:id", auth, feelings.findAllDislike);
 
-    // effacer un like sur le message par id
+    // Delete a like on the message by id
     router.delete("/like/:id", auth, feelings.delLike);
 
-    // effacer un dislike sur le message par id
+    // Delete a dislike on the message by id
     router.delete("/dislike/:id", auth, feelings.delDislike);
 
     app.use("/api/feelings", router);

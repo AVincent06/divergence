@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());    // extracts the JSON object from the request
 app.use('/app/images', express.static(path.join(__dirname, '/app/images')));
 
-/* Connexion à la base de données */
+// Connection to the database
 const db = require("./app/models");
 db.sequelize.sync({ force: process.env.APP_FORCE }).then(() => { // {force: true} juste pour le développement
     console.log("BDD supprimée et synchronisée avec Sequelize");
 
-    /* initialisation de la table Categories */ 
+    // Initialization of the Categories table
     db.categories.bulkCreate([
         { 'name': 'like' },     // id = 1
         { 'name': 'dislike' }   // id = 2
@@ -33,10 +33,10 @@ db.sequelize.sync({ force: process.env.APP_FORCE }).then(() => { // {force: true
         console.log("Table Categories initialisée!");
     });
 
-    /* initialisation du compte Administrateur */
+    // Initiating the Administrator account
     bcrypt.hash(process.env.ADMIN_PASSWORD, 10)
             .then(async (hash) => {
-                // Création d'un administrateur
+                // Creating an administrator
                 const admin = {
                     firstname: process.env.ADMIN_FIRSTNAME,
                     name: process.env.ADMIN_NAME,
@@ -45,7 +45,7 @@ db.sequelize.sync({ force: process.env.APP_FORCE }).then(() => { // {force: true
                     is_admin: true,
                     photo: 'aucune'
                 }
-                // Sauvegarde de l'utilisateur dans la BDD
+                // Saving the user in the DB
                 await db.users.create(admin)
                     .then(() => {
                         console.log("Compte Administrateur initialisé!");
@@ -59,7 +59,7 @@ db.sequelize.sync({ force: process.env.APP_FORCE }).then(() => { // {force: true
             });
 });
 
-/* Cross Origin Resource Sharing (CORS) */
+// Cross Origin Resource Sharing (CORS)
 app.use((req, res, next) => {   //applies to all roads
     res.setHeader('Access-Control-Allow-Origin', `http://${process.env.FRONT_HOST}:${process.env.FRONT_PORT}`);  //origin of access
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');    //authorized headers
@@ -67,7 +67,7 @@ app.use((req, res, next) => {   //applies to all roads
     next();
 });
 
-/* Déclaration des routes */
+// Declaration of roads
 require("./app/routes/user.routes")(app);
 require("./app/routes/message.routes")(app);
 require("./app/routes/comment.routes")(app);
