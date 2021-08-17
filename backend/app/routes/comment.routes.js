@@ -10,19 +10,19 @@ module.exports = app => {
     const router = require("express").Router();
     const auth = require("../middleware/auth");
 
-    // créer un nouveau commentaire
+    // Create a new comment
     router.post("/", auth, comments.create);
 
-    // récupérer tous les commentaires du message par messageId
+    // Retrieve all message comments by messageId
     router.get("/message/:messageId", auth, comments.findAllByMessage);
 
-    // récupérer un commentaire par id
+    // Retrieve a comment by id
     router.get("/:id", auth, comments.findOne);
 
-    // mettre à jour un commentaire par id
+    // Update a comment by id
     router.put("/:id", auth, comments.update);
 
-    // effacer un commentaire par id
+    // Delete a comment by id
     router.delete("/:id", auth, comments.delete);
 
     app.use("/api/comments", router);

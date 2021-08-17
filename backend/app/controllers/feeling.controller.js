@@ -40,7 +40,7 @@ exports.addLike = async (req, res) => {
         }
     })
         .then(([feeling, created]) => {
-            if(created) { // Ajout du Like
+            if(created) { // Adding the Like
                 res.status(201).send({ 
                     message: "Un Like a été ajouté pour ce  message par cet utilisateur!" 
                 });
@@ -86,7 +86,7 @@ exports.addDislike = async (req, res) => {
         }
     })
         .then(([feeling, created]) => {
-            if(created) { // Ajout du Dislike
+            if(created) { // Adding the Dislike
                 res.status(201).send({ 
                     message: "Un Dislike a été ajouté pour ce  message par cet utilisateur!" 
                 });
@@ -120,7 +120,7 @@ exports.findAllLike = async (req, res) => {
                 { CategoryId: LIKE }
             ],
             UserId: {
-                [Op.not]: null  // Pour éviter de compter les likes dont l'auteur a supprimé son compte
+                [Op.not]: null  // To avoid counting likes whose author has deleted their account
             }
         }
     })
@@ -149,7 +149,7 @@ exports.findAllDislike = async (req, res) => {
                 { CategoryId: DISLIKE }
             ],
             UserId: {
-                [Op.not]: null  // Pour éviter de compter les likes dont l'auteur a supprimé son compte
+                [Op.not]: null  // To avoid counting likes whose author has deleted their account
             }
         }
     })

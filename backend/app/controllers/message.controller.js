@@ -22,14 +22,14 @@ const fs = require('fs');
 */
 exports.create = async (req, res) => {
 
-    // Création d'un message
+    // Creating a message
     const message = {
         picture: req.file ? `${req.protocol}://${req.get('host')}/app/images/${req.file.filename}` : 'aucune',
         article: req.body.article,
         UserId: req.body.user_id
     }
 
-    // Sauvegarde du message dans la BDD
+    // Saving the message in the DB
     await Message.create(message)
         .then(data => {
             res.status(201).send(data);
@@ -50,11 +50,11 @@ exports.findNewsByAmount = async (req, res) => {
     const nb = parseInt(req.params.nb, 10);
     let receptacles = [];
 
-    // étape 1 : récupération de la partie "Messages" des News
+    // step 1: recovery of the "Messages" part of the News
     await Message.findAll({
         where: {
             UserId: {
-                [Op.not]: null  // Pour éviter une erreur serveur si l'auteur a supprimé son compte
+                [Op.not]: null  // To avoid a server error if the author has deleted his/her account
             }
         },
         order: Sequelize.literal('createdAt DESC'),
@@ -65,7 +65,7 @@ exports.findNewsByAmount = async (req, res) => {
                 return element.dataValues;
             });
 
-            // étape 2 : récupération de la partie "Users" des news
+            // step 2 : recovery of the "Users" part of the news
             for (let i = 0; i < receptacles.length; i++) {
                 await User.findByPk(receptacles[i].UserId)
                     .then(partTwo => {
@@ -83,14 +83,14 @@ exports.findNewsByAmount = async (req, res) => {
                         });
                     });
 
-                // étape 3 : récupération de la partie "Comments" des news
+                // step 3 : recovery of the "Comments" part of the news
                 const partThree = await Comment.count({
                     where: {
                         MessageId: {
                             [Op.eq]: receptacles[i].id
                         },
                         UserId: {
-                            [Op.not]: null  // Pour éviter de compter le commentaire si l'auteur a supprimé son compte
+                            [Op.not]: null  // To avoid counting the comment if the author has deleted his account
                         }
                     }
                 });
@@ -99,7 +99,7 @@ exports.findNewsByAmount = async (req, res) => {
                 };
                 receptacles[i] = Object.assign({}, receptacles[i], pieceOfpartThree);
 
-                // étape 4 : récupération de la partie "Feelings" des news
+                // step 4 : recovery of the "Feelings" part of the news
                 await Feeling.findAll({
                     attributes: ['UserId'],
                     where: {
@@ -108,7 +108,7 @@ exports.findNewsByAmount = async (req, res) => {
                             { CategoryId: LIKE }
                         ],
                         UserId: {
-                            [Op.not]: null  // Pour éviter de compter le commentaire si l'auteur a supprimé son compte
+                            [Op.not]: null  // To avoid counting the comment if the author has deleted his account
                         }
                     }
                 })
@@ -135,7 +135,7 @@ exports.findNewsByAmount = async (req, res) => {
                             { CategoryId: DISLIKE }
                         ],
                         UserId: {
-                            [Op.not]: null  // Pour éviter de compter le commentaire si l'auteur a supprimé son compte
+                            [Op.not]: null  // To avoid counting the comment if the author has deleted his account
                         }
                     }
                 })
@@ -268,7 +268,7 @@ exports.update = async (req, res) => {
     }
 
     let info = '';
-    if( req.file && (req.body.picture !== 'aucune') ) {   // on gère l'effacement du fichier précedent avant de perdre sa trace
+    if( req.file && (req.body.picture !== 'aucune') ) {   // we manage the deletion of the previous file before losing its trace
         const filename = req.body.picture.split('/images/')[1];
         fs.unlink(`app/images/${filename}`, (error) => {
             if (error) res.status(400).json({ error });
@@ -306,7 +306,7 @@ exports.delete = async (req, res) => {
     const id = req.params.id;
     let fileToDelete;
 
-    // Processus de recherche de l'image du message pour la suppression ultérieur
+    // Process of searching the message image for later deletion
     await Message.findByPk(id)
         .then(data => {
             fileToDelete = data.picture;
@@ -322,7 +322,7 @@ exports.delete = async (req, res) => {
     })
         .then( isDeleted => {
             if(isDeleted) {
-                // Suppression de la photo de cet utilisateur
+                // Deleting this user's photo
                 let info = '';
                 if( fileToDelete !== 'aucune' && fileToDelete !== null) {
                     const filename = fileToDelete.split('/images/')[1];

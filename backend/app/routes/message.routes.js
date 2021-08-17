@@ -11,28 +11,28 @@ module.exports = app => {
     const auth = require("../middleware/auth");
     const multer = require("../middleware/multer-config");
 
-    // créer un nouveau message
+    // Create a new message
     router.post("/", auth, multer, messages.create);
 
-    // récupérer les nb dernières news
+    // Get the last nb of news
     router.get("/amount/:nb/news", auth, messages.findNewsByAmount);
 
-    // récupérer les nb derniers messages
+    // Retrieve the last nb of messages
     router.get("/amount/:nb", auth, messages.findAllByAmount);
 
-    // récupérer les messages jusqu'à date
+    // Retrieve messages up to date
     router.get("/date/:date", auth, messages.findAllByDate);
 
-    // récupérer tous les message par userId
+    // Retrieve all messages by userId
     router.get("/user/:userId", auth, messages.findAllByUser);
 
-    // récupérer un message par id
+    // Retrieve a message by id
     router.get("/:id", auth, messages.findOne);
 
-    // mettre à jour un message par id
+    // Update a message by id
     router.put("/:id", auth, multer, messages.update);
 
-    // effacer un message par id
+    // Delete a message by id
     router.delete("/:id", auth, messages.delete);
 
     app.use("/api/messages", router);

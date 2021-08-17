@@ -7,7 +7,7 @@
 const dbConfig = require("../config/db.config");
 const Sequelize = require("sequelize");
 
-/* initialisation de la connection à la BDD */
+// initialization of the connection to the DB
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
@@ -24,14 +24,14 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-/* Déclaration des tables de la BDD via leurs modèles */
+// Declaration of DB tables via their models
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.categories = require("./category.model.js")(sequelize, Sequelize);
 db.messages = require("./message.model.js")(sequelize, Sequelize);
 db.comments = require("./comment.model.js")(sequelize, Sequelize);
 db.feelings = require("./feeling.model.js")(sequelize, Sequelize);
 
-/* Déclaration des associations (par paire) pour les clefs étrangères */
+// Declaration of associations (in pairs) for foreign keys
 db.messages.hasMany(db.comments);       // #1 association    
 db.comments.belongsTo(db.messages);     // #1 association
 db.users.hasMany(db.comments);          // #2 association
