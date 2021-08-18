@@ -1,6 +1,6 @@
-# VincentAugugliaro_7_20210604
+# Divergence, a social network
 
-Repository for project 7 of the web developer path at OpenClassrooms.
+Repository for social network project used as a pretext to upgrade my skills on Angular
 
 ## Getting Started
 
