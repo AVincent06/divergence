@@ -1,0 +1,122 @@
+@use '~@angular/material' as mat;
+
+@include mat.core();
+@include mat.strong-focus-indicators();
+
+// Colour range
+$div-primary-color: (
+    50 : #eceefd,
+    100 : #cfd4fb,
+    200 : #b0b7f8,
+    300 : #909af5,
+    400 : #7884f2,
+    500 : #606ef0,
+    600 : #5866ee,
+    700 : #4e5bec,
+    800 : #4451e9,
+    900 : #333fe5,
+    A100 : #ffffff,
+    A200 : #f7f8ff,
+    A400 : #c4c8ff,
+    A700 : #abb0ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$div-accent-color: (
+    50 : #f6eafa,
+    100 : #e8c9f4,
+    200 : #d8a6ec,
+    300 : #c882e4,
+    400 : #bd67df,
+    500 : #b14cd9,
+    600 : #aa45d5,
+    700 : #a13ccf,
+    800 : #9833ca,
+    900 : #8824c0,
+    A100 : #fefcff,
+    A200 : #eac9ff,
+    A400 : #d796ff,
+    A700 : #cd7cff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$div-warn-color: (
+    50 : #fee8e9,
+    100 : #fec7c9,
+    200 : #fda1a5,
+    300 : #fc7b80,
+    400 : #fb5f65,
+    500 : #fa434a,
+    600 : #f93d43,
+    700 : #f9343a,
+    800 : #f82c32,
+    900 : #f61e22,
+    A100 : #ffffff,
+    A200 : #fff8f8,
+    A400 : #ffc5c6,
+    A700 : #ffacad,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Colour palette
+$div-palette-primary: mat.define-palette($div-primary-color);
+$div-palette-accent: mat.define-palette($div-accent-color);
+$div-palette-warn: mat.define-palette($div-warn-color);
+
+// Own theme
+$div-theme: mat.define-light-theme((
+ color: (
+   primary: $div-palette-primary,
+   accent: $div-palette-accent,
+   warn: $div-palette-warn
+ )
+));
+
+// Apply our theme to Angular
+@include mat.all-component-themes($div-theme);
+@include mat.strong-focus-indicators-theme($div-theme);
