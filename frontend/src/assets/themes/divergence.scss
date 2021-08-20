@@ -104,8 +104,8 @@ $div-warn-color: (
 );
 
 // Colour palette
-$div-palette-primary: mat.define-palette($div-primary-color);
-$div-palette-accent: mat.define-palette($div-accent-color);
+$div-palette-primary: mat.define-palette($div-primary-color, 400);
+$div-palette-accent: mat.define-palette($div-accent-color, 400);
 $div-palette-warn: mat.define-palette($div-warn-color);
 
 // Own theme

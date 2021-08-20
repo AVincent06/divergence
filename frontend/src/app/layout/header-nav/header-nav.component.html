@@ -8,57 +8,57 @@
 
     <!-- SignIn Menu -->
     <mat-nav-list *ngIf="isLoggedIn" (click)="drawer.close()">
-      <a mat-list-item routerLink="news"><mat-icon color="primary">home</mat-icon>Accueil</a>
-      <a mat-list-item routerLink="profile"><mat-icon color="primary">face</mat-icon>Profil</a>
-      <a mat-list-item routerLink="contacts"><mat-icon color="primary">people</mat-icon>Contacts</a>
-      <a mat-list-item routerLink="submit"><mat-icon color="primary">post_add</mat-icon>Publier</a>
-      <!-- <a mat-list-item routerLink="notif"><mat-icon color="primary">notifications</mat-icon>Notifications</a> -->
+      <a mat-list-item routerLink="news"><mat-icon color="accent">home</mat-icon>Accueil</a>
+      <a mat-list-item routerLink="profile"><mat-icon color="accent">face</mat-icon>Profil</a>
+      <a mat-list-item routerLink="contacts"><mat-icon color="accent">people</mat-icon>Contacts</a>
+      <a mat-list-item routerLink="submit"><mat-icon color="accent">post_add</mat-icon>Publier</a>
+      <!-- <a mat-list-item routerLink="notif"><mat-icon color="accent">notifications</mat-icon>Notifications</a> -->
       <mat-divider></mat-divider>
-      <a mat-list-item routerLink="" (click)="signout()"><mat-icon color="primary">logout</mat-icon>Quitter</a>
+      <a mat-list-item routerLink="" (click)="signout()"><mat-icon color="accent">logout</mat-icon>Quitter</a>
     </mat-nav-list>
 
     <!-- SignOut Menu -->
     <mat-nav-list *ngIf="!isLoggedIn" (click)="drawer.close()">
-      <a mat-list-item routerLink="signin"><mat-icon color="primary">login</mat-icon>Se connecter</a>
-      <a mat-list-item routerLink="signup"><mat-icon color="primary">history_edu</mat-icon>S'inscrire</a>
+      <a mat-list-item routerLink="signin"><mat-icon color="accent">login</mat-icon>Se connecter</a>
+      <a mat-list-item routerLink="signup"><mat-icon color="accent">history_edu</mat-icon>S'inscrire</a>
     </mat-nav-list>
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar class="sticky-top">
-      <a routerLink="news" class="brand" color="primary"><span class="mat-headline">Divergence</span></a>
+    <mat-toolbar class="sticky-top" color="primary">
+      <a routerLink="news" class="brand"><span class="mat-headline">Divergence</span></a>
       <span class="spacer"></span>
 
       <!-- SignIn Menu -->
       <span *ngIf="!(isHandset$ | async) &&  isLoggedIn">
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]=""
           (click)="signout()">
           <mat-icon>logout</mat-icon>&nbsp;Quitter
         </button>
         <!-- <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/notif']">
           <mat-icon>notifications</mat-icon>&nbsp;Notifications
         </button> -->
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/submit']">
           <mat-icon>post_add</mat-icon>&nbsp;Publier
         </button>
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/contacts']">
           <mat-icon>people</mat-icon>&nbsp;Contacts
         </button>
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/profile']">
           <mat-icon>face</mat-icon>&nbsp;Profil
         </button>
@@ -68,13 +68,13 @@
       <span *ngIf="!(isHandset$ | async) &&  !isLoggedIn">
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/signup']">
           <mat-icon>history_edu</mat-icon>&nbsp;S'inscrire
         </button>
         <button 
           mat-raised-button 
-          color="primary" 
+          color="accent" 
           [routerLink]="['/signin']">
           <mat-icon>login</mat-icon>&nbsp;Se connecter
         </button>
@@ -83,7 +83,7 @@
       <button
         type="button"
         aria-label="Toggle sidenav"
-        color="primary"
+        color="accent"
         mat-mini-fab
         (click)="drawer.toggle()" 
         *ngIf="isHandset$ | async">

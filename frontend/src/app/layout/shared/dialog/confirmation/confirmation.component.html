@@ -6,13 +6,14 @@
 <mat-dialog-actions align="end">
 	<button 
         mat-raised-button 
-        color="accent" 
+        color="warn" 
         (click)="onConfirm()" 
         tabindex="1">
         {{confirmButtonText}}
     </button>
 	<button 
-        mat-raised-button 
+        mat-stroked-button
+        color="warn" 
         mat-dialog-close 
         tabindex="-1">
         {{cancelButtonText}}

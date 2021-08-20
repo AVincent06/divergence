@@ -28,7 +28,7 @@
                 </ng-template>
                 <div>
                     <input type="file" accept="image/*" #photoFile formControlName="photo" (change)="onChange($event)">
-                    <button mat-stroked-button type="button" color="primary" (click)="photoFile.click()">Modifier ma photo</button>
+                    <button mat-stroked-button type="button" color="accent" (click)="photoFile.click()">Modifier ma photo</button>
                 </div>
             </div>
             <p>
@@ -86,7 +86,7 @@
             <div class="bottom">
                 <button
                     type="button"
-                    color="accent"
+                    color="warn"
                     mat-mini-fab
                     (click)="onDelete()">
                     <mat-icon aria-label="Delete profile forever">dangerous</mat-icon>
@@ -96,14 +96,14 @@
                         mat-stroked-button 
                         type="button"
                         (click)="initForm()"
-                        color="primary">
+                        color="accent">
                         Réinitialisez
                     </button>
                     <button 
                         mat-raised-button 
                         type="submit" 
                         [disabled]="profileForm.invalid"
-                        color="primary">
+                        color="accent">
                         Mettre à jour
                     </button>
                 </div>

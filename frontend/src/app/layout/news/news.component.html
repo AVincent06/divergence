@@ -57,7 +57,7 @@
           type="button" 
           (click)="onShow(i)">
           {{ message.nbComments }}
-          <mat-icon color="primary">
+          <mat-icon color="accent">
             chat_bubble_outline
           </mat-icon>
         </button>
@@ -66,14 +66,14 @@
           <!-- Like Button -->
           <button mat-icon-button type="button" (click)="onLike(i)" [disabled]="isOneOfThem(message.usersDisliked) === true">
             <span id="likes-{{i}}">{{ message.likes }}</span>
-            <mat-icon id="up-{{i}}"  color="primary">
+            <mat-icon id="up-{{i}}"  color="accent">
               {{isOneOfThem(message.usersLiked) ? 'thumb_up_alt' : 'thumb_up_off_alt'}}
             </mat-icon>
           </button>
 
           <!-- Dislike Button -->
           <button mat-icon-button type="button" (click)="onDislike(i)" [disabled]="isOneOfThem(message.usersLiked) === true">
-            <mat-icon id="down-{{i}}"  color="primary">
+            <mat-icon id="down-{{i}}"  color="accent">
               {{isOneOfThem(message.usersDisliked) ? 'thumb_down_alt' : 'thumb_down_off_alt'}}
             </mat-icon>
             <span id="dislikes-{{i}}">{{ message.dislikes }}</span>
