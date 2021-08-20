@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
 export class ForgotComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Problème de mot de passe ?');
+    this.titleService.setTitle('Divergence - Problème de mot de passe ?');
   }
 
   ngOnInit(): void { }

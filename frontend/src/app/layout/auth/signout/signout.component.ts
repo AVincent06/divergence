@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
 export class SignoutComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('Groupomania - A bientôt !');
+    this.titleService.setTitle('Divergence - A bientôt !');
   }
 
   ngOnInit(): void { }
