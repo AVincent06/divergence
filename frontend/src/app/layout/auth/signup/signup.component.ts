@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Inscrivez-vous!');
+    this.titleService.setTitle('Divergence - Inscrivez-vous!');
   }
 
   ngOnInit(): void {

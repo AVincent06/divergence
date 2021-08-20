@@ -16,7 +16,7 @@ import { Title } from '@angular/platform-browser';
 export class FourOhFourComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('Groupomania - erreur 404');
+    this.titleService.setTitle('Divergence - erreur 404');
   }
 
   ngOnInit(): void { }

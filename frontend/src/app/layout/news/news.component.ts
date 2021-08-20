@@ -33,7 +33,7 @@ export class NewsComponent implements OnInit {
     private messagesService: MessageService, 
     private router: Router,
     private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Actualités');
+    this.titleService.setTitle('Divergence - Actualités');
   }
 
   ngOnInit(): void {

@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private titleService: Title) {
-      this.titleService.setTitle('Groupomania - Votre profil');
+      this.titleService.setTitle('Divergence - Votre profil');
     }
 
   ngOnInit(): void {

@@ -23,7 +23,7 @@ export class ContactsComponent implements OnInit {
   constructor(private profilesService: ProfileService, 
               private router: Router,
               private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Liste des contacts');
+    this.titleService.setTitle('Divergence - Liste des contacts');
   }
 
   ngOnInit(): void {

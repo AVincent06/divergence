@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Connectez-vous!');
+    this.titleService.setTitle('Divergence - Connectez-vous!');
   }
 
   ngOnInit(): void {

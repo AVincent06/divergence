@@ -31,7 +31,7 @@ export class SubmitComponent implements OnInit {
               private router: Router, 
               private authService: AuthService,
               private titleService: Title) {
-    this.titleService.setTitle('Groupomania - Publiez votre message!');
+    this.titleService.setTitle('Divergence - Publiez votre message!');
   }
 
   ngOnInit(): void {
